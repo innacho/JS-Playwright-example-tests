@@ -1,0 +1,46 @@
+stages:
+  - test
+  - diagnostic
+  - info
+
+PWCtests:
+  stage: test
+  image:
+    name: mcr.microsoft.com/playwright:focal
+  before_script:
+    - npm init playwright@latest
+  script:
+    - npx playwright test --project='cb'
+  allow_failure: true
+  artifacts:
+    when: always
+    paths:
+      - ./endPoint.jpg
+      - ./temp/result.html
+    expire_in: 2 week
+
+diagnostic:
+  stage: diagnostic
+  script:
+    - ls
+    - cd temp
+    - ls
+    - cut -c1-200 < result.html
+    - cd ..
+
+pages:
+  stage: info
+  script:
+    - mkdir public
+    - mv ./temp/result.html public
+    - ls
+    - cd public
+    - ls
+    - cut -c1-200 < result.html
+    - cd ..
+    - sh .notify.sh
+  artifacts:
+    when: always
+    paths:
+      - public
+    expire_in: 2 week

@@ -1,0 +1,32 @@
+{
+  "name": "playwright",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test:respin": "set SKIN=respin && npx playwright test --project=respin",
+    "test:pwc": "set SKIN=pwc && npx playwright test --project=pwc",
+    "test:cb": "set SKIN=cb && npx playwright test --project=cb",
+    "test:respin:zephyr": "set SKIN=respin && node run-test.js",
+    "test:pwc:zephyr": "set SKIN=pwc && node run-test.js",
+    "test:cb:zephyr": "set SKIN=cb && node run-test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "@types/node": "^20.12.12"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "description": "",
+  "dependencies": {
+    "axios": "^1.7.8",
+    "dotenv": "^16.4.5",
+    "mysql2": "^3.12.0",
+    "node-fetch": "^2.7.0",
+    "playwright": "^1.49.0",
+    "xml2js": "^0.6.2"
+  }
+}

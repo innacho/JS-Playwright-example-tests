@@ -1,0 +1,13 @@
+package-lock.json
+node_modules
+.idea
+temp
+jest_html_reporters.html
+endPoint.jpg
+endPointExtra.jpg
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/screens/
+/reports/

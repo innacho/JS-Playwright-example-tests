@@ -1,0 +1,46 @@
+options:
+  docker: true
+
+definitions:
+  caches:
+    node-ui: node_modules
+
+  steps:
+    - step: &test
+        name: Run Test Now
+        image: mcr.microsoft.com/playwright:v1.49.1-jammy
+        caches:
+          - docker
+        #          - node-ui
+        services:
+          - docker
+        script:
+          - npm install
+          # - npm ci
+          - npm run test:$skinName:zephyr
+
+        # Output files
+        artifacts:
+          - screens/**
+          - test-results/**
+          - playwright-report/**
+
+pipelines:
+  custom:
+    run-casino-test:
+      - variables:
+          - name: skinName
+            default: "pwc"
+      - step: *test
+
+    run-respin-test:
+      - variables:
+          - name: skinName
+            default: "respin"
+      - step: *test
+
+    run-championbet-test:
+      - variables:
+          - name: skinName
+            default: "cb"
+      - step: *test
